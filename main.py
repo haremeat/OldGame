@@ -31,10 +31,18 @@ to_y = 0
 # 이동 속도
 character_speed = 0.6
 
+# 적 enemy 캐릭터
+enemy = pygame.image.load("D:/pygameProject/Assets/enemy.png")
+enemy_size = enemy.get_rect().size # 이미지 크기를 구해 옴
+enemy_width = enemy_size[0]
+enemy_height = enemy_size[1]
+enemy_x_pos = (screen_width / 2) - (enemy_width / 2) # 화면 중앙에 위치
+enemy_y_pos = (screen_height / 2) - (enemy_height / 2) # 화면 중앙에 위치
+
 # 이벤트 루프
 running = True # 게임 진행중인가?
 while running:
-    dt = clock.tick(30) # 게임 화면의 초당 프레임 수를 설정
+    dt = clock.tick(60) # 게임 화면의 초당 프레임 수를 설정
 
     # fps check
     # print("fps : " + str(clock.get_fps()))
@@ -76,10 +84,26 @@ while running:
         character_y_pos = (screen_height - character_height)
 
 
+    # 충돌 처리를 위한 rect 정보 업데이트
+    character_rect = character.get_rect()
+    character_rect.left = character_x_pos
+    character_rect.top = character_y_pos
+
+    enemy_rect = enemy.get_rect()
+    enemy_rect.left = enemy_x_pos
+    enemy_rect.top = enemy_y_pos
+
+    # 충돌 체크
+    if character_rect.colliderect(enemy_rect):
+        print("collide")
+        running = False
+
     #screen.fill((0,0,255))
     screen.blit(background, (0, 0)) # 배경 그리기
-
+    # 캐릭터 그리기
     screen.blit(character, (character_x_pos, character_y_pos))
+    # 적 캐릭터 그리기
+    screen.blit(enemy, (enemy_x_pos, enemy_y_pos))
 
     pygame.display.update() # 게임 화면 다시 그리기 (필수)
 
