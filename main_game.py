@@ -98,6 +98,9 @@ while running:
     # 무기 위치를 위로 올린다
     weapons = [[w[0], w[1] - weapon_speed] for w in weapons]
 
+    # 천장에 닿은 무기 없애기
+    weapons = [[w[0], w[1]] for w in weapons if w[1] > 0]
+
     # 4. 충돌 처리
 
     # 5. 화면에 그리기
