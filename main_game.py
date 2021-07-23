@@ -12,7 +12,7 @@ screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 # 화면 타이틀 설정
-pygame.display.set_caption("게임 이름")
+pygame.display.set_caption("Main Game")
 
 # FPS
 clock = pygame.time.Clock()
@@ -39,7 +39,22 @@ character_height = character_size[1]
 character_x_pos = (screen_width / 2) - (character_width / 2)
 character_y_pos = (screen_height - character_height - stage_height)
 
-running = True # 게임 진행중인가?
+character_to_x = 0
+character_speed = 5
+
+# 무기 만들기
+weapon = pygame.image.load(os.path.join(image_path, "weapon.png"))
+weapon_size = weapon.get_rect().size
+weapon_width = weapon_size[0]
+
+# 무기는 한번에 여러 발 발사 가능
+weapons = []
+
+# 무기 이동 속도
+weapon_speed = 10
+
+# 게임 진행중인가?
+running = True
 while running:
     dt = clock.tick(30) # 게임 화면의 초당 프레임 수를 설정
 
@@ -49,10 +64,39 @@ while running:
     # 2. 이벤트 처리(키보드, 마우스 등)
     for event in pygame.event.get(): # 어떤 이벤트가 발생하였는가?
         if event.type == pygame.QUIT: # 창이 닫히는 이벤트가 발생하였는가?
-            running = False # 게임이 진행중이 아님
+            running = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                character_to_x -= character_speed
+            elif event.key == pygame.K_RIGHT:
+                character_to_x += character_speed
+            elif event.key == pygame.K_SPACE:
+                # 무기 발사
+                weapon_x_pos = character_x_pos + \
+                               (character_width / 2) - (weapon_width / 2)
+                weapon_y_pos = character_y_pos
+                # 스페이스바를 클릭 수 만큼 무기가 만들어지고 weapons 리스트에 저장된다.
+                weapons.append([weapon_x_pos, weapon_y_pos])
+
+        if event.type == pygame.KEYUP:  # 방향키를 떼면 멈춤
+            if event.type == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                to_x = 0
+            elif event.type == pygame.K_UP or event.key == pygame.K_DOWN:
+                to_y = 0
 
 
     # 3. 게임 캐릭터 위치 정의
+    character_x_pos += character_to_x
+
+    if character_x_pos < 0:
+        character_x_pos = 0
+    elif character_x_pos > screen_width - character_width:
+        character_x_pos = screen_width - character_width
+
+    # 무기 위치 조정
+    # 무기 위치를 위로 올린다
+    weapons = [[w[0], w[1] - weapon_speed] for w in weapons]
 
     # 4. 충돌 처리
 
@@ -61,7 +105,11 @@ while running:
     screen.blit(stage, (0, (screen_height - stage_height)))
     screen.blit(character, (character_x_pos, character_y_pos))
 
-    pygame.display.update() # 게임 화면 다시 그리기 (필수)
+    for weapon_x_pos, weapon_y_pos in weapons:
+        screen.blit(weapon, (weapon_x_pos, weapon_y_pos))
+
+    # 게임 화면 다시 그리기 (필수)
+    pygame.display.update()
 
 # pygame 종료
 pygame.quit()
