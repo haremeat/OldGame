@@ -163,6 +163,9 @@ while running:
 
         # 공 rect 정보 업데이트
         ball_rect = ball_images[ball_img_idx].get_rect()
+        ball_rect.left = ball_pos_x
+        ball_rect.top = ball_pos_y
+
         if character_rect.colliderect(ball_rect):
             running = False
             break
