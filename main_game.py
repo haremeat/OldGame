@@ -151,6 +151,11 @@ while running:
 
     # 4. 충돌 처리
 
+    # 캐릭터 rect 정보 업데이트
+    character_rect = character.get_rect()
+    character_rect.left = character_x_pos
+    character_rect.top = character_y_pos
+
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))
     screen.blit(stage, (0, (screen_height - stage_height)))
