@@ -156,6 +156,18 @@ while running:
     character_rect.left = character_x_pos
     character_rect.top = character_y_pos
 
+    for ball_idx, ball_val in enumerate(balls):
+        ball_pos_x = ball_val["pos_x"]
+        ball_pos_y = ball_val["pos_y"]
+        ball_img_idx = ball_val["img_idx"]
+
+        # 공 rect 정보 업데이트
+        ball_rect = ball_images[ball_img_idx].get_rect()
+        if character_rect.colliderect(ball_rect):
+            running = False
+            break
+
+
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))
     screen.blit(stage, (0, (screen_height - stage_height)))
