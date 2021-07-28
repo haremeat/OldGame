@@ -77,6 +77,10 @@ balls.append({
     "init_spd_y": ball_speed_y[0]  # y 최초 속도
 })
 
+# 사라질 무기, 공 정보 저장 변수
+weapon_to_remove  = -1
+ball_to_remove = -1
+
 # 게임 진행중인가?
 running = True
 while running:
@@ -181,7 +185,11 @@ while running:
             weapon_rect.left = weapon_pos_x
             weapon_rect.top = weapon_pos_y
 
-
+            # 충돌 체크
+            if weapon_rect.colliderect(ball_rect):
+                weapon_to_remove = weapon_idx  # 해당 무기 없애기 위한 값 설정
+                ball_to_remove = ball_idx  # 해당 공 없애기 위한 값 설정
+                break
 
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))
