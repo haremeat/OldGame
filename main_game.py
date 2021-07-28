@@ -191,6 +191,15 @@ while running:
                 ball_to_remove = ball_idx  # 해당 공 없애기 위한 값 설정
                 break
 
+    # 충돌된 공 or 무기 없애기
+    if ball_to_remove > -1:
+        del balls[ball_to_remove]
+        ball_to_remove = -1
+
+    if weapon_to_remove > -1:
+        del weapons[weapon_to_remove]
+        weapon_to_remove = -1
+
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))
     screen.blit(stage, (0, (screen_height - stage_height)))
