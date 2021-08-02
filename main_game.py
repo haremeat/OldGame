@@ -193,6 +193,13 @@ while running:
                 # 가장 작은 공이 아니라면 다음 단계의 공으로 나눠주기
                 if ball_img_idx < 3:
 
+                    # 현재 공 크기 정보를 가지고 옴
+                    ball_width = ball_rect.size[0]
+                    ball_height = ball_rect.size[1]
+
+                    # 나눠진 공 정보
+                    small_ball_rect = ball_images[ball_img_idx + 1].get_rect()
+
                     # 왼쪽으로 튕겨나가는 작은 공
                     balls.append({
                         "pos_x": 50,
