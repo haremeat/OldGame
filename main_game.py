@@ -189,6 +189,30 @@ while running:
             if weapon_rect.colliderect(ball_rect):
                 weapon_to_remove = weapon_idx  # 해당 무기 없애기 위한 값 설정
                 ball_to_remove = ball_idx  # 해당 공 없애기 위한 값 설정
+
+                # 가장 작은 공이 아니라면 다음 단계의 공으로 나눠주기
+                if ball_img_idx < 3:
+
+                    # 왼쪽으로 튕겨나가는 작은 공
+                    balls.append({
+                        "pos_x": 50,
+                        "pos_y": 50,
+                        "img_idx": 0,  # 공의 이미지 인덱스
+                        "to_x": 3,
+                        "to_y": -6,
+                        "init_spd_y": ball_speed_y[0]  # y 최초 속도
+                    })
+
+                    # 오른쪽으로 튕겨나가는 작은 공
+                    balls.append({
+                        "pos_x": 50,
+                        "pos_y": 50,
+                        "img_idx": 0,  # 공의 이미지 인덱스
+                        "to_x": 3,
+                        "to_y": -6,
+                        "init_spd_y": ball_speed_y[0]  # y 최초 속도
+                    })
+
                 break
 
     # 충돌된 공 or 무기 없애기
