@@ -199,6 +199,9 @@ while running:
 
                     # 나눠진 공 정보
                     small_ball_rect = ball_images[ball_img_idx + 1].get_rect()
+                    small_ball_width = small_ball_rect.size[0]
+                    small_ball_height = small_ball_rect.size[1]
+
 
                     # 왼쪽으로 튕겨나가는 작은 공
                     balls.append({
