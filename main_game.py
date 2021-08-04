@@ -215,12 +215,12 @@ while running:
 
                     # 오른쪽으로 튕겨나가는 작은 공
                     balls.append({
-                        "pos_x": 50,
-                        "pos_y": 50,
-                        "img_idx": 0,  # 공의 이미지 인덱스
-                        "to_x": 3,
+                        "pos_x": ball_pos_x + (ball_width / 2) - (small_ball_width / 2),
+                        "pos_y": ball_pos_x + (ball_height / 2) - (small_ball_height / 2),
+                        "img_idx": ball_img_idx + 1,  # 공의 이미지 인덱스
+                        "to_x": +3,
                         "to_y": -6,
-                        "init_spd_y": ball_speed_y[0]  # y 최초 속도
+                        "init_spd_y": ball_speed_y[ball_img_idx + 1]  # y 최초 속도
                     })
 
                 break
