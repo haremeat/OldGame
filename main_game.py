@@ -83,7 +83,11 @@ ball_to_remove = -1
 
 # Font 정의
 game_font = pygame.font.Font(None, 40)
+total_time = 100
+start_ticks = pygame.time.get_ticks() # 시작 시간 정의
 
+# 게임 종료 메세지 / TimeOut, Mission Complete, Game Over
+game_result = "Game Over"
 
 # 게임 진행중인가?
 running = True
