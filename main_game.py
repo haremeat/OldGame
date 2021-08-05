@@ -81,6 +81,10 @@ balls.append({
 weapon_to_remove  = -1
 ball_to_remove = -1
 
+# Font 정의
+game_font = pygame.font.Font(None, 40)
+
+
 # 게임 진행중인가?
 running = True
 while running:
