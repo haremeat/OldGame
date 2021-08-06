@@ -257,9 +257,16 @@ while running:
         screen.blit(ball_images[ball_img_idx], (ball_pos_x, ball_pos_y))
 
     # 경과 시간 계산
+    play_time = (total_time - elapsed_time)
+
     elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # ms -> s
-    timer = game_font.render("Time : {}".format(int(total_time - elapsed_time)), True, (255, 255, 255))
+    timer = game_font.render("Time : {}".format(int(play_time)), True, (255, 255, 255))
     screen.blit(timer, (10, 10))
+
+    # 시간 초과했다면
+    if play_time <= 0:
+        game_result = "Time Over"
+        running = False
 
     # 게임 화면 다시 그리기 (필수)
     pygame.display.update()
