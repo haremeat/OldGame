@@ -257,9 +257,8 @@ while running:
         screen.blit(ball_images[ball_img_idx], (ball_pos_x, ball_pos_y))
 
     # 경과 시간 계산
-    play_time = (total_time - elapsed_time)
-
     elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000 # ms -> s
+    play_time = (total_time - elapsed_time)
     timer = game_font.render("Time : {}".format(int(play_time)), True, (255, 255, 255))
     screen.blit(timer, (10, 10))
 
