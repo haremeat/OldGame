@@ -270,5 +270,9 @@ while running:
     # 게임 화면 다시 그리기 (필수)
     pygame.display.update()
 
+# 게임 오버 메시지
+msg = game_font.render(game_result, True, (255, 255, 0))
+
+
 # pygame 종료
 pygame.quit()
