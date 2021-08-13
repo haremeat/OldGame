@@ -271,8 +271,8 @@ while running:
     pygame.display.update()
 
 # 게임 오버 메시지
-msg = game_font.render(game_result, True, (255, 255, 0))
-
+msg = game_font.render(game_result, True, (255, 255, 0))  # 노란색
+msg_rect = msg.get_rect(center=(screen_width / 2, screen_height / 2))
 
 # pygame 종료
 pygame.quit()
