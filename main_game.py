@@ -275,5 +275,8 @@ msg = game_font.render(game_result, True, (255, 255, 0))  # 노란색
 msg_rect = msg.get_rect(center=(int(screen_width / 2), int(screen_height / 2)))
 pygame.display.update()
 
+# 2초 대기
+pygame.time.delay(2000)
+
 # pygame 종료
 pygame.quit()
