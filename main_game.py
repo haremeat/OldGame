@@ -273,6 +273,7 @@ while running:
 # 게임 오버 메시지
 msg = game_font.render(game_result, True, (255, 255, 0))  # 노란색
 msg_rect = msg.get_rect(center=(int(screen_width / 2), int(screen_height / 2)))
+screen.blit(msg, msg_rect)
 pygame.display.update()
 
 # 2초 대기
