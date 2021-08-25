@@ -232,6 +232,9 @@ while running:
                     })
 
                 break
+        else:  # 계속 게임을 진행
+            continue  # 안쪽 for문 조건이 맞지 않으면 continue. 빠깥 for문 계속 수행
+        break # 안쪽 for문에서 break를 만나면 여기로 진입 가능.
 
     # 충돌된 공 or 무기 없애기
     if ball_to_remove > -1:
